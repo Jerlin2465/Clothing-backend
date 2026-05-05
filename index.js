@@ -28,8 +28,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://your-frontend.vercel.app",
-      " https://clothing-backend-volk.onrender.com",
+      "https://clothing-e-com-alpha.vercel.app",
+      "https://clothing-e-com-v6ww.onrender.com",
     ],
     credentials: true,
   }),
