@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const Register = require("../model/Register");
+const Register = require("../model/register");
 const bcrypt = require("bcrypt");
 
 const getDetails = async (req, res) => {
