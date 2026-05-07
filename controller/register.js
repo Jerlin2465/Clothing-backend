@@ -4,13 +4,25 @@ const bcrypt = require("bcrypt");
 
 const getDetails = async (req, res) => {
   try {
+    console.log("REQ USER:", req.user);
+
     const user = await Register.findById(req.user.id).select("-password");
+
+    console.log("FOUND USER:", user);
+
     if (!user) {
-      return res.json({ message: "user not found" });
+      return res.json({
+        message: "user not found",
+      });
     }
+
     res.json({ user });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log("GETDETAIL ERROR:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 const createregister = async (req, res) => {
@@ -57,7 +69,7 @@ const loginUser = async (req, res) => {
       { expiresIn: "1d" },
     );
 
-    res.cookie("token", token, { httpOnly: true, sameSite: "Strict" });
+    // res.cookie("token", token, { httpOnly: true, sameSite: "Strict" });
 
     res.json({
       message: "Login successful",
