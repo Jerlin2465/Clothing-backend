@@ -31,7 +31,7 @@ app.use(
         "http://localhost:5173",
         "http://localhost:5000",
         "http://localhost:5001",
-        "https://clothing-e-com-alpha.vercel.app",
+        "https://blackpearl-kappa.vercel.app/",
         "https://clothing-e-com-v6ww.onrender.com",
       ];
 
