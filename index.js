@@ -20,43 +20,25 @@ dotenv.config();
 connectDb();
 
 const app = express();
-
-app.use(express.json());
-app.use(cookieParser());
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "http://localhost:5000",
-        "http://localhost:5001",
-        "https://blackpearl-kappa.vercel.app",
-        "https://clothing-e-com-v6ww.onrender.com",
-      ];
-
-      if (!origin) return callback(null, true);
-
-      if (
-        allowedOrigins.includes(origin) ||
-        /^http:\/\/192\.168\.\d+\.\d+(:\d+)?$/.test(origin) ||
-        /^http:\/\/10\.\d+\.\d+\.\d+(:\d+)?$/.test(origin)
-      ) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
-    },
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5000",
+      "http://localhost:5001",
+      "https://blackpearl-kappa.vercel.app",
+      "https://clothing-e-com-v6ww.onrender.com",
+    ],
     credentials: true,
   }),
 );
 
+app.use(express.json());
+app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
-
 app.get("/", (req, res) => {
   res.send("Backend running successfully");
 });
-
 app.use("/api", register);
 app.use("/get-product", addProductRoutes);
 app.use("/cart", cartRouter);
