@@ -33,6 +33,11 @@ const orderSchema = new mongoose.Schema(
       enum: ["Paid", "Pending", "Failed"],
       default: "Paid",
     },
+    orderStatus: {
+      type: String,
+      enum: ["Placed", "Processing", "Shipped", "Delivered"],
+      default: "Placed",
+    },
   },
   { timestamps: true },
 );
