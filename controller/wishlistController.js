@@ -51,7 +51,6 @@ const getwishlist = async (req, res) => {
       userId: req.userId,
     }).populate("items.productId");
 
-    console.log("Fetched Wishlist ", wishlist);
 
     if (!wishlist) {
       return res.status(200).json({ items: [] });

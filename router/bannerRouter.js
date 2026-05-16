@@ -9,45 +9,10 @@ const {
   updateBanner,
   deleteBanner,
 } = require("../controller/bannerController");
-
+const upload =require("../middleware/uploads")
 const router = express.Router();
-router.get("/test", (req, res) => {
-  res.send("Banner Route Working");
-});
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
 
-  filename: (req, file, cb) => {
-    const uniqueName = Date.now() + path.extname(file.originalname);
-
-    cb(null, uniqueName);
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = /jpg|jpeg|png|webp/;
-
-  const extName = allowedTypes.test(
-    path.extname(file.originalname).toLowerCase(),
-  );
-
-  const mimeType = allowedTypes.test(file.mimetype);
-
-  if (extName && mimeType) {
-    cb(null, true);
-  } else {
-    cb("Only Images Are Allowed");
-  }
-};
-
-const upload = multer({
-  storage,
-  fileFilter,
-});
-
-router.post("/add", upload.single("image"), addBanner, (req, res) => {
+router.post("/upload", upload.single("image"), addBanner, (req, res) => {
   console.log("banner add");
 });
 

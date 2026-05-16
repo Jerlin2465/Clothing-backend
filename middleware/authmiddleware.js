@@ -21,9 +21,7 @@ const jwt = require("jsonwebtoken");
 const authmiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-    console.log("NEW MIDDLEWARE RUNNING");
-    console.log("header:", req.headers);
-    console.log("AUTH:", req.headers.authorization);
+
     if (!authHeader) {
       return res.status(401).json({
         message: "token not found",
